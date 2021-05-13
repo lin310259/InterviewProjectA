@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class EnumType
+    public class Enum
     {
         public enum Sex {
             Unknow=0,
@@ -18,7 +18,7 @@ namespace WebApplication1.Models
         {
             Normal = 0,
             Deleted = 1,
-            System = 2,
+            Default = 2,
         }
     }
 }

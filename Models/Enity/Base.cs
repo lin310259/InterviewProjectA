@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using static WebApplication1.Models.EnumType;
+using static WebApplication1.Models.Enum;
 
 namespace WebApplication1.Models.Enity
 {

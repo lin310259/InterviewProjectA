@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication1.AppStart;
 
 namespace WebApplication1
 {
@@ -16,6 +17,8 @@ namespace WebApplication1
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            AppSettings.Initialize(configuration);
+
         }
 
         public IConfiguration Configuration { get; }
@@ -24,6 +27,9 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //ª`¤J¡Aµù¥UManage¡C
+            services.AddScoped(i => new Manage.AccountManage((Models.PortfolioContext)i.GetService(typeof(Models.PortfolioContext))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

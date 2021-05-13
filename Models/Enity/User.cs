@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using static WebApplication1.Models.EnumType;
+using static WebApplication1.Models.Enum;
 
 namespace WebApplication1.Models.Enity
 {
-    public class User
+    public class User:Base
     {
         /// <summary>
         /// 使用者唯一識別碼PK
@@ -16,6 +16,20 @@ namespace WebApplication1.Models.Enity
         [Column("UserPK"), Display(Name = "使用者唯一識別碼PK")]
         [Key, Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long UserPK { get; set; }
+
+        /// <summary>
+        /// 帳號
+        /// </summary>
+        [Column("UserAccount"), Display(Name = "帳號"), MaxLength(20)]
+        [Required]
+        public string UserAccount { get; set; }
+
+        /// <summary>
+        /// 密碼
+        /// </summary>
+        [Column("UserPassword"), Display(Name = "密碼"), MaxLength(20)]
+        [Required]
+        public string UserPassword { get; set; }
 
         /// <summary>
         /// 身分證號碼
