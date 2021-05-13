@@ -20,5 +20,11 @@ namespace WebApplication1.Models
             Deleted = 1,
             Default = 2,
         }
+
+        public enum DBReturnResult
+        {
+            Succese = 0,
+            Fall = 1,
+        }
     }
 }

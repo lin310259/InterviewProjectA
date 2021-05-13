@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebApplication1.Models;
 using WebApplication1.Models.Enity;
 using WebApplication1.Models.Query;
+using static WebApplication1.Models.Enum;
 
 namespace WebApplication1.Manage
 {
@@ -16,7 +17,7 @@ namespace WebApplication1.Manage
         {
             _Context = _context;
         }
-        public IEnumerable<User> QueryUser(QueryUser _query)
+        public IEnumerable<UserData> QueryUser(QueryUser _query)
         {
 
             var qry = _Context.Users.Where(m => _Context.DISPLAY_STATUS.Contains(m.DataState));
@@ -32,6 +33,46 @@ namespace WebApplication1.Manage
             return qry;
         }
 
+        public DBReturnResult InsertUser(UserData _user) 
+        {
+            UserData data = _Context.Users.Where(m => m.UserPK == _user.UserPK).FirstOrDefault();
+            if(data != null)
+                return DBReturnResult.Fall;
 
+            _user.CreateDate = DateTime.Now;
+            _user.CreateUserPK = 1;
+            _Context.Add(_user);
+            _Context.SaveChanges();
+
+            return DBReturnResult.Succese;
+        }
+
+        public DBReturnResult UpdateUser(UserData _user)
+        {
+            UserData data = _Context.Users.Where(m => m.UserPK == _user.UserPK).FirstOrDefault();
+            if (data == null)
+                return DBReturnResult.Fall;
+
+            _Context.Entry(data).CurrentValues.SetValues(_user);
+            data.ChangedDate = DateTime.Now;
+            data.ChangedUserPK = 1;
+            _Context.SaveChanges();
+
+            return DBReturnResult.Succese;
+        }
+
+        public DBReturnResult DeleteUser(long _userPK)
+        {
+            UserData data = _Context.Users.Where(m => m.UserPK == _userPK).FirstOrDefault();
+            if (data == null)
+                return DBReturnResult.Fall;
+
+            data.ChangedDate = DateTime.Now;
+            data.ChangedUserPK = 1;
+            data.DataState = DataStatus.Deleted;
+            _Context.SaveChanges();
+
+            return DBReturnResult.Succese;
+        }
     }
 }

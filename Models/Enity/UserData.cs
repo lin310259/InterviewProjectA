@@ -8,7 +8,7 @@ using static WebApplication1.Models.Enum;
 
 namespace WebApplication1.Models.Enity
 {
-    public class User:Base
+    public class UserData:Base
     {
         /// <summary>
         /// 使用者唯一識別碼PK

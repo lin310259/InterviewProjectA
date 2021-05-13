@@ -16,6 +16,6 @@ namespace WebApplication1.Models
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<UserData> Users { get; set; }
     }
 }
